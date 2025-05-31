@@ -162,3 +162,7 @@ CREATE TABLE `detail_penjualan` (
 | tanggal               | DATE                             | Tanggal transaksi                     |
 | metode_pembayaran     | ENUM('Tunai','E-Wallet')         | Metode pembayaran                     |
 | id_user               | INT (FK)                         | Referensi ke tabel `user`             |
+
+# Class Diagram
+<img src="https://github.com/user-attachments/assets/d02c1c61-601f-4f44-b33f-bc9b369efe77" alt="gambar" width="650" />
+
