@@ -228,3 +228,4 @@ Produk "1" -- "many" DetailPenjualan
 Kategori "1" -- "many" Produk
 
 @enduml
+
