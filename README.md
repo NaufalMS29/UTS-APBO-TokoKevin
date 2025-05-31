@@ -228,7 +228,7 @@ CREATE TABLE `detail_penjualan` (
 <img src="https://github.com/user-attachments/assets/28f956c0-b70e-402e-a200-699125be5fb6" alt="Image">
 <img src="https://github.com/user-attachments/assets/7554b368-4d70-4dae-b81c-5f62c72c49c6" alt="Image">
 <img src="https://github.com/user-attachments/assets/ef3314cc-20f4-4728-a869-48c00192c858" alt="Image">
-<img src="https://github.com/user-attachments/assets/90542f9a-a6ee-4c54-8bba-295b2850ec06" alt="Image">
+<img src="https://github.com/user-attachments/assets/e8f85821-92db-425b-b0f2-88468f027855" alt="Image">
 <img src="https://github.com/user-attachments/assets/b98d0fbb-900b-4682-beff-69372eb2fc29" alt="Image">
 <img src="https://github.com/user-attachments/assets/b8270650-b02a-4dc3-9291-726fc30da13f" alt="Image">
 
