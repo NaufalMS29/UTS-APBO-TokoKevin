@@ -31,6 +31,24 @@ CREATE TABLE `user` (
   `role` enum('Super Admin','Admin') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+| Nama Kolom   | Tipe Data                      | Keterangan             |
+|--------------|--------------------------------|------------------------|
+| id_user      | INT (PK)                       | ID unik pengguna       |
+| nama_user    | VARCHAR(50)                    | Nama lengkap pengguna  |
+| email        | VARCHAR(50)                    | Alamat email           |
+| password     | VARCHAR(50)                    | Kata sandi             |
+| role         | ENUM('Super Admin','Admin')    | Peran pengguna         |
+
+
+| Nama Kolom            | Tipe Data     | Keterangan                               |
+|-----------------------|---------------|------------------------------------------|
+| id_detail_penjualan   | INT (PK)      | ID detail penjualan                      |
+| jumlah_produk         | INT           | Jumlah produk terjual                    |
+| harga_satuan          | INT           | Harga satuan per produk                  |
+| id_transaksi_penjualan| INT (FK)      | Referensi ke tabel `transaksi_penjualan` |
+| id_produk             | INT (FK)      | Referensi ke tabel `produk`              |
+
+
 CREATE TABLE `supplier` (
   `id_supplier` int NOT NULL,
   `nama_supplier` varchar(50) DEFAULT NULL,
@@ -39,11 +57,25 @@ CREATE TABLE `supplier` (
   `alamat` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+| Nama Kolom     | Tipe Data     | Keterangan               |
+|----------------|---------------|--------------------------|
+| id_supplier    | INT (PK)      | ID unik supplier         |
+| nama_supplier  | VARCHAR(50)   | Nama supplier            |
+| telepon        | VARCHAR(15)   | Nomor telepon            |
+| email          | VARCHAR(50)   | Alamat email             |
+| alamat         | TEXT          | Alamat lengkap           |
+
 CREATE TABLE `kategori` (
   `id_kategori` int NOT NULL,
   `nama_kategori` varchar(50) DEFAULT NULL,
   `keterangan` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+| Nama Kolom     | Tipe Data     | Keterangan           |
+|----------------|---------------|----------------------|
+| id_kategori    | INT (PK)      | ID kategori produk   |
+| nama_kategori  | VARCHAR(50)   | Nama kategori        |
+| keterangan     | TEXT          | Deskripsi kategori   |
 
 CREATE TABLE `produk` (
   `id_produk` int NOT NULL,
@@ -54,6 +86,15 @@ CREATE TABLE `produk` (
   `id_kategori` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+| Nama Kolom     | Tipe Data     | Keterangan             |
+|----------------|---------------|------------------------|
+| id_produk      | INT (PK)      | ID produk              |
+| nama_produk    | VARCHAR(50)   | Nama produk            |
+| harga_jual     | INT           | Harga jual produk      |
+| harga_beli     | INT           | Harga beli produk      |
+| stok           | INT           | Stok tersedia          |
+| id_kategori    | INT (FK)      | Referensi kategori     |
+
 ### 1. Table Relasi
 CREATE TABLE `pembelian` (
   `id_pembelian` int NOT NULL,
@@ -63,6 +104,16 @@ CREATE TABLE `pembelian` (
   `id_user` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+| Nama Kolom       | Tipe Data     | Keterangan                         |
+|------------------|---------------|------------------------------------|
+| id_pembelian     | INT (PK)      | ID pembelian                       |
+| tanggal          | DATE          | Tanggal pembelian                  |
+| total_pembelian  | INT           | Total nilai pembelian              |
+| id_supplier      | INT (FK)      | Referensi ke tabel `supplier`      |
+| id_user          | INT (FK)      | Referensi ke tabel `user`          |
+
+---
+
 CREATE TABLE `detail_pembelian` (
   `id_detail_pembelian` int NOT NULL,
   `id_pembelian` int DEFAULT NULL,
@@ -70,6 +121,14 @@ CREATE TABLE `detail_pembelian` (
   `jumlah_pembelian` int DEFAULT NULL,
   `harga_satuan` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+| Nama Kolom         | Tipe Data     | Keterangan                              |
+|--------------------|---------------|-----------------------------------------|
+| id_detail_pembelian | INT (PK)     | ID detail pembelian                     |
+| id_pembelian        | INT (FK)     | Referensi ke tabel `pembelian`          |
+| id_produk           | INT (FK)     | Referensi ke tabel `produk`             |
+| jumlah_pembelian    | INT          | Jumlah produk yang dibeli               |
+| harga_satuan        | INT          | Harga satuan per produk                 |
 
 CREATE TABLE `transaksi_penjualan` (
   `id_transaksi_penjualan` int NOT NULL,
@@ -79,6 +138,15 @@ CREATE TABLE `transaksi_penjualan` (
   `id_user` int DEFAULT NULL
 ) 
 
+| Nama Kolom            | Tipe Data                        | Keterangan                          |
+|-----------------------|----------------------------------|-------------------------------------|
+| id_transaksi_penjualan| INT (PK)                         | ID transaksi penjualan              |
+| total_penjualan       | INT                              | Total nilai penjualan               |
+| tanggal               | DATE                             | Tanggal transaksi                   |
+| metode_pembayaran     | ENUM('Tunai','E-Wallet')         | Metode pembayaran                   |
+| id_user               | INT (FK)                         | Referensi ke tabel `user`           |
+
+
 CREATE TABLE `detail_penjualan` (
   `id_detail_penjualan` int NOT NULL,
   `jumlah_produk` int DEFAULT NULL,
@@ -86,3 +154,11 @@ CREATE TABLE `detail_penjualan` (
   `id_transaksi_penjualan` int DEFAULT NULL,
   `id_produk` int DEFAULT NULL
 )
+
+| Nama Kolom            | Tipe Data                        | Keterangan                            |
+|-----------------------|----------------------------------|---------------------------------------|
+| id_transaksi_penjualan| INT (PK)                         | ID transaksi penjualan                |
+| total_penjualan       | INT                              | Total nilai penjualan                 |
+| tanggal               | DATE                             | Tanggal transaksi                     |
+| metode_pembayaran     | ENUM('Tunai','E-Wallet')         | Metode pembayaran                     |
+| id_user               | INT (FK)                         | Referensi ke tabel `user`             |
