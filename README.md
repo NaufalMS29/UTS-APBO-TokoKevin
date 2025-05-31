@@ -17,3 +17,6 @@ Pada proyek ini, kami dari kelompok Warung Kak Kevin merancang dan mengembangkan
 
 # Usecase
 <img src="https://github.com/user-attachments/assets/10c2814e-757e-4a9c-a4c5-ebec55f6bb53" alt="gambar" width="450" />
+
+# Entity Relationship Diagram
+<img src="https://github.com/user-attachments/assets/39ea209a-a1bf-48ee-99ff-db0d3fc72ec3" alt="gambar" width="450" />
