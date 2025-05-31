@@ -1,0 +1,93 @@
+CREATE DATABASE IF NOT EXISTS toko_kevin;
+USE toko_kevin;
+
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS supplier;
+DROP TABLE IF EXISTS kategori;
+DROP TABLE IF EXISTS pembelian;
+DROP TABLE IF EXISTS produk;
+DROP TABLE IF EXISTS transaksi_penjualan;
+DROP TABLE IF EXISTS detail_penjualan;
+
+START TRANSACTION;
+
+CREATE TABLE user
+(
+  id_user INT PRIMARY KEY AUTO_INCREMENT,
+  nama_user VARCHAR(50),
+  email VARCHAR(50),
+  password VARCHAR(50),
+  role ENUM('Super Admin', 'Admin')
+);
+
+CREATE TABLE supplier
+(
+  id_supplier INT PRIMARY KEY AUTO_INCREMENT,
+  nama_supplier VARCHAR(50),
+  telepon VARCHAR(15),
+  email VARCHAR(50),
+  alamat TEXT
+);
+
+CREATE TABLE kategori
+(
+  id_kategori INT PRIMARY KEY AUTO_INCREMENT,
+  nama_kategori VARCHAR(50),
+  keterangan TEXT
+);
+
+CREATE TABLE pembelian
+(
+  id_pembelian INT PRIMARY KEY AUTO_INCREMENT,
+  tanggal DATE,
+  total_pembelian INT,
+  id_supplier INT,
+  id_user INT,
+  FOREIGN KEY (id_supplier) REFERENCES supplier(id_supplier),
+  FOREIGN KEY (id_user) REFERENCES user(id_user)
+);
+
+CREATE TABLE transaksi_penjualan
+(
+  id_transaksi_penjualan INT PRIMARY KEY AUTO_INCREMENT,
+  total_penjualan INT,
+  tanggal DATE,
+  metode_pembayaran ENUM('Tunai', 'E-Wallet'),
+  id_user INT,
+  FOREIGN KEY (id_user) REFERENCES user(id_user)
+);
+
+CREATE TABLE produk
+(
+  id_produk INT PRIMARY KEY AUTO_INCREMENT,
+  nama_produk VARCHAR(50),
+  harga_jual INT,
+  harga_beli INT,
+  stok INT,
+  id_kategori INT,
+  FOREIGN KEY (id_kategori) REFERENCES kategori(id_kategori)
+);
+
+CREATE TABLE detail_penjualan
+(
+  id_detail_penjualan INT PRIMARY KEY AUTO_INCREMENT,
+  jumlah_produk INT,
+  harga_satuan INT,
+  id_transaksi_penjualan INT,
+  id_produk INT,
+  FOREIGN KEY (id_transaksi_penjualan) REFERENCES transaksi_penjualan(id_transaksi_penjualan),
+  FOREIGN KEY (id_produk) REFERENCES produk(id_produk)
+);
+
+CREATE TABLE detail_pembelian
+(
+  id_detail_pembelian INT PRIMARY KEY AUTO_INCREMENT,
+  id_pembelian INT,
+  id_produk INT,
+  jumlah_pembelian INT,
+  harga_satuan INT,
+  FOREIGN KEY (id_pembelian) REFERENCES pembelian(id_pembelian),
+  FOREIGN KEY (id_produk) REFERENCES produk(id_produk)
+);
+
+COMMIT;
