@@ -13,6 +13,7 @@ Pada proyek ini, kami dari kelompok Warung Kak Kevin merancang dan mengembangkan
 | 5  | Tri Anggoro Budi      | 4523210108  | 
 
 # Aktor yang menggunakan website warung kevin
-1. Admin sebagai aktor tunggal
+1. Admin sebagai aktor tunggal yang menggunakan website admin
 
 # Usecase
+<img src="https://github.com/user-attachments/assets/10c2814e-757e-4a9c-a4c5-ebec55f6bb53" alt="gambar" width="450" />
